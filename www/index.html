@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Offline Discount & Percentage Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+    }
+    .card {
+      max-width: 420px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      font-size: 16px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .result {
+      margin-top: 18px;
+      padding: 14px;
+      background: #eef4ff;
+      border-radius: 8px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Discount & Percentage Helper</h2>
+    <p style="font-size:13px;color:#555;margin-top:4px;">100% Offline • Fixbit Studio</p>
+
+    <label for="amount">Original Amount</label>
+    <input id="amount" type="number" value="1000" oninput="calculate()" />
+
+    <label for="percent">Discount / Percentage (%)</label>
+    <input id="percent" type="number" value="15" oninput="calculate()" />
+
+    <div class="result" id="output"></div>
+  </div>
+
+  <script>
+    function calculate() {
+      const amount = parseFloat(document.getElementById("amount").value) || 0;
+      const percent = parseFloat(document.getElementById("percent").value) || 0;
+      const saved = (amount * percent) / 100;
+      const finalAmount = amount - saved;
+
+      document.getElementById("output").innerHTML =
+        "<strong>Saved / Percentage Value:</strong> " + saved.toFixed(2) + "<br>" +
+        "<strong>Final Amount After Discount:</strong> " + finalAmount.toFixed(2);
+    }
+    calculate();
+  </script>
+</body>
+</html>
