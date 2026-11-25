@@ -25,15 +25,20 @@ jobs:
           distribution: "temurin"
           java-version: "21"
 
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
       - name: Install Node dependencies
-        run: npm install
+        run: npm ci
 
       - name: Sync Capacitor Android
         run: npx cap sync android
 
       - name: Build Android App Bundle (.aab)
         working-directory: android
-        run: ./gradlew bundleRelease
+        run: |
+          chmod +x gradlew
+          ./gradlew bundleRelease --stacktrace
 
       - name: Upload AAB Artifact
         uses: actions/upload-artifact@v4
